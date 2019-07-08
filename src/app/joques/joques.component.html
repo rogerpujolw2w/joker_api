@@ -1,0 +1,20 @@
+<h3>Jokes</h3>
+<!--
+<button id="joke-btn">Get Random Joke</button>
+-->
+<button (click)='getUrl()'>Get list</button>
+<!--
+<button (click)='getRandom()'>Get Random Jack</button>
+<pre>
+  {{ joque }}
+</pre>
+<p>{{ joke$ | async }}</p>
+-->
+
+<ul>
+<li *ngFor='let jk of joke$ | async' >
+  <p>{{jk.title}}</p>
+</li>
+
+</ul>
+
