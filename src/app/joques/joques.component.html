@@ -2,7 +2,7 @@
 <!--
 <button id="joke-btn">Get Random Joke</button>
 -->
-<button (click)='getUrl()'>Get list</button>
+<button (click)='getUrl2()'>Get list</button>
 <!--
 <button (click)='getRandom()'>Get Random Jack</button>
 <pre>
@@ -12,9 +12,18 @@
 -->
 
 <ul>
-<li *ngFor='let jk of joke$ | async' >
-  <p>{{jk.title}}</p>
+<li *ngFor='let jkx of joque ; let i=index;' >
+  <p>{{jkx.title}}</p>
+  <button (click)=getFake(jkx.id)></button>
 </li>
 
 </ul>
+<p *ngIf='jk !== undefined'>{{ jk.title }}</p>
 
+
+<button (click)=addFake()></button>
+
+<form>
+  <label for='name'>Name</label>
+
+</form>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 
 export interface Joke {
   type: string,
@@ -52,10 +52,34 @@ export class JoquesService {
   getUrl$() {
 
     //return this.http.get('http://jsonplaceholder.typicode.com/todos', {responseType: 'text'});
-    return this.http.get<Fake[]>('http://jsonplaceholder.typicode.com/todos')
+    //return this.http.get<Fake[]>('http://jsonplaceholder.typicode.com/todos')
+    return this.http.get<Fake[]>('http://localhost:3000/customers')
       .pipe(
-        map((res) => { return res.filter(item => item.id<=5); })
+        //map((res) => { return res.filter(item => item.id<=5); })
+        map((res) => { return res; })
       )
   }
+
+  getFake$(id) {
+    return this.http.get<Fake>(`http://localhost:3000/customers/${id}`);
+    //return this.http.get<Fake>('http://localhost:3000/customers/' + id);
+  }
+
+addFake$(fake:Fake) {
+  console.log(fake);
+
+/*   return this.http.post<Fake>('http://localhost:3000/customers/', fake)
+  .pipe(tap((fake : Fake) => console.log(`add member: id=${fake.id}`)),
+  catchError(this.handleError.bind(this)));
+ */
+
+ return this.http.post<Fake>('http://localhost:3000/customers/', fake);
+
+}
+
+private handleError(error) {
+  console.log(error);
+}
+
 
 }
